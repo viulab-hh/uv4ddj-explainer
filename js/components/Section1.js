@@ -2,6 +2,8 @@
     SECTION 1 — Hero Parallax
 ══════════════════════════════════════════════════════════════ */
 
+//
+
 import { html, useEffect, useRef, useState } from "../lib.js";
 
 export default function Section1() {
@@ -23,20 +25,36 @@ export default function Section1() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Background zoom: scale 1.0 → 1.08 over full scroll
-  const bgScale = 1 + progress * 0.08;
+  // Background zoom: scale 1.0 → 1.25 over full scroll
+  const bgScale = 1 + progress * 0.25;
 
-  // Text box 1: fade out and translate up in first 30% of scroll
-  const t1Opacity = Math.max(0, 1 - progress * 3.5);
-  const t1Y = progress * -80;
+  // White overlay: fade in from start opacity to end opacity over full scroll
+  const overlayStartOpacity = 0.9;
+  const overlayEndOpacity = 0.4;
+  const overlayOpacity =
+    overlayStartOpacity + (overlayEndOpacity - overlayStartOpacity) * progress;
 
-  // Text box 2: fade in from 45% scroll onward
-  const t2Raw = (progress - 0.45) * 6;
-  const t2Opacity = Math.min(1, Math.max(0, t2Raw));
-  const t2Y = Math.max(0, (1 - t2Raw) * 50);
+  // Helper: remap progress from [inStart, inEnd] → [0,1] (clamped)
+  const remap = (p, inStart, inEnd) =>
+    Math.min(1, Math.max(0, (p - inStart) / (inEnd - inStart)));
+
+  // Text box 1: visible at start, fades out 25%→38%
+  const t1In = 1;
+  const t1Out = Math.max(0, 1 - remap(progress, 0.25, 0.38));
+  const t1Opacity = t1In * t1Out;
+  const t1Y = progress * -60;
+
+  // Text box 2: fades in 30%→42%, fades out 55%→67%
+  const t2Opacity =
+    remap(progress, 0.3, 0.42) * Math.max(0, 1 - remap(progress, 0.55, 0.67));
+  const t2Y = Math.max(0, (1 - remap(progress, 0.3, 0.42)) * 50);
+
+  // Text box 3: fades in 62%→74%, stays visible
+  const t3Opacity = remap(progress, 0.62, 0.74);
+  const t3Y = Math.max(0, (1 - remap(progress, 0.62, 0.74)) * 50);
 
   return html`
-    <section ref=${sectionRef} class="relative h-[220vh]">
+    <section ref=${sectionRef} class="relative h-[380vh]">
       <div
         class="sticky top-0 h-screen overflow-hidden grid place-items-center"
       >
@@ -48,45 +66,59 @@ export default function Section1() {
           }}
         ></div>
 
-        <div class="absolute inset-0 bg-white/45"></div>
-
         <div
-          class="relative z-10 w-full max-w-[92vw] sm:max-w-2xl lg:max-w-3xl px-4 sm:px-8 text-center text-black will-change-transform"
+          class="absolute inset-0 bg-white will-change-[opacity]"
+          style=${{ opacity: overlayOpacity }}
+        ></div>
+
+        <!-- Text Box 1 -->
+        <div
+          class="absolute inset-0 grid place-items-center px-4 sm:px-8 will-change-transform"
           style=${{
             opacity: t1Opacity,
             transform: `translateY(${t1Y}px)`,
           }}
         >
-          <h1
-            class="m-0 mb-5 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
+          <p
+            class="m-0 max-w-[92vw] sm:max-w-2xl lg:max-w-3xl text-center text-black text-base sm:text-lg md:text-xl lg:text-2xl leading-6 sm:leading-8 md:leading-9 text-balance"
           >
-            <em>uncertainty4ddj</em>: Visualizing Uncertainty for Data
-            Journalism
-          </h1>
-          <p class="m-0 text-sm sm:text-base md:text-lg leading-7 sm:leading-8">
             Data is a central part of journalistic work, yet one crucial element
             often remains invisible: the uncertainty of the data. It is
             essential for interpreting facts and creating convincing narratives.
-            <br /><br />
+          </p>
+        </div>
+
+        <!-- Text Box 2 -->
+        <div
+          class="absolute inset-0 grid place-items-center px-4 sm:px-8 will-change-transform"
+          style=${{
+            opacity: t2Opacity,
+            transform: `translateY(${t2Y}px)`,
+          }}
+        >
+          <p
+            class="m-0 max-w-[92vw] sm:max-w-2xl lg:max-w-3xl text-center text-black text-base sm:text-lg md:text-xl lg:text-2xl leading-6 sm:leading-8 md:leading-9 text-balance"
+          >
             At viu:lab (HAW Hamburg), we examine the role of uncertainty
-            visualization in data-driven news coverage through the ${" "}
+            visualization in data-driven news coverage through the${" "}
             <em>uncertainty4ddj</em> project.
           </p>
         </div>
 
+        <!-- Text Box 3 -->
         <div
-          class="absolute left-1/2 bottom-[12%] sm:bottom-[14%] md:bottom-[18%] z-[11] w-full max-w-[92vw] sm:max-w-xl md:max-w-2xl px-4 sm:px-8 text-center text-black will-change-transform"
+          class="absolute inset-0 grid place-items-center px-4 sm:px-8 will-change-transform"
           style=${{
-            opacity: t2Opacity,
-            transform: `translate(-50%, ${t2Y}px)`,
+            opacity: t3Opacity,
+            transform: `translateY(${t3Y}px)`,
           }}
         >
-          <p
-            class="m-0 text-lg sm:text-2xl md:text-[1.65rem] font-bold leading-snug sm:leading-[1.45]"
+          <h1
+            class="m-0 max-w-[92vw] sm:max-w-2xl lg:max-w-3xl text-center text-black font-bold  text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
           >
-            But why is it important to be informed about the uncertainty in
-            data?
-          </p>
+            <em>uncertainty4ddj</em>: Visualizing Uncertainty for Data
+            Journalism
+          </h1>
         </div>
       </div>
     </section>
