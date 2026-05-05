@@ -44,6 +44,7 @@ const ANNOTATION_DEFS = {
     mobileAdjust: { dx: 0.01, dy: 0.01, dw: 0.02, dh: 0 },
     label:
       "But given the margin of error, this “change” could simply reflect normal sampling variation.",
+    labelPosition: "top-left",
     color: "#34A480",
   },
   5: {
