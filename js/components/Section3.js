@@ -48,7 +48,7 @@ const COLUMNS = [
   },
   {
     headline: "Spatial",
-    image: "files/nyt_cut.png",
+    image: "files/NYT_cut.png",
     text1: "conflict mapping",
     text2: '(e.g. from "New York Times")',
   },
@@ -89,7 +89,9 @@ export default function Section3() {
 
   return html`
     <section id="section-3" ref=${sectionRef} class="relative h-[260vh]">
-      <div class="sticky top-0 bg-red-0 text-black py-4 px-4 sm:px-8 h-screen flex items-center">
+      <div
+        class="sticky top-0 bg-red-0 text-black py-4 px-4 sm:px-8 h-screen flex items-center"
+      >
         <div class="max-w-6xl mx-auto">
           <${FadeInUp} delay=${0}>
             <h2
@@ -102,47 +104,48 @@ export default function Section3() {
           <div
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 mb-14 sm:mb-16 lg:mb-20"
           >
-            ${COLUMNS.map(
-              (col, i) => {
-                const colIn = remap(progress, 0.14 + i * 0.23, 0.38 + i * 0.23);
-                const colOpacity = colIn;
-                const colY = (1 - colIn) * 30;
+            ${COLUMNS.map((col, i) => {
+              const colIn = remap(progress, 0.14 + i * 0.23, 0.38 + i * 0.23);
+              const colOpacity = colIn;
+              const colY = (1 - colIn) * 30;
 
-                return html`
-                  <article
-                    key=${i}
-                    class="flex flex-col items-center text-center transition-all duration-500 ease-out"
-                    style=${{
-                      opacity: colOpacity,
-                      transform: `translateY(${colY}px)`,
-                    }}
+              return html`
+                <article
+                  key=${i}
+                  class="flex flex-col items-center text-center transition-all duration-500 ease-out"
+                  style=${{
+                    opacity: colOpacity,
+                    transform: `translateY(${colY}px)`,
+                  }}
+                >
+                  <h3
+                    class="m-0 mb-4 font-bold text-xl sm:text-2xl leading-snug text-uv4ddj-green"
                   >
-                    <h3
-                      class="m-0 mb-4 font-bold text-xl sm:text-2xl leading-snug text-uv4ddj-green"
-                    >
-                      ${col.headline}
-                    </h3>
+                    ${col.headline}
+                  </h3>
 
-                    <p class="m-0 text-base sm:text-lg leading-relaxed">
-                      ${col.text1}
-                    </p>
-                    <p class="m-0 text-sm sm:text-base leading-relaxed  mb-4">
-                      ${col.text2}
-                    </p>
-                    <img
-                      src=${col.image}
-                      alt=${col.headline}
-                      class="w-full h-full object-cover shadow-[0_2px_14px_rgba(0,0,0,0.13)] border-2 border-uv4ddj-green"
-                    />
-                  </article>
-                `;
-              },
-            )}
+                  <p class="m-0 text-base sm:text-lg leading-relaxed">
+                    ${col.text1}
+                  </p>
+                  <p class="m-0 text-sm sm:text-base leading-relaxed  mb-4">
+                    ${col.text2}
+                  </p>
+                  <img
+                    src=${col.image}
+                    alt=${col.headline}
+                    class="w-full h-full object-cover shadow-[0_2px_14px_rgba(0,0,0,0.13)] border-2 border-uv4ddj-green"
+                  />
+                </article>
+              `;
+            })}
           </div>
 
           <p
             class="m-0 text-center font-bold leading-tight text-3xl sm:text-4xl lg:text-5xl text-balance"
-            style=${{ opacity: closingOpacity, transform: `translateY(${closingY}px)` }}
+            style=${{
+              opacity: closingOpacity,
+              transform: `translateY(${closingY}px)`,
+            }}
           >
             Uncertainty demands better communication.
           </p>

@@ -158,7 +158,7 @@ export default function Section2() {
       >
         <div class="relative w-full">
           <img
-            src="../../files/newspaper-article-image-cut.png"
+            src="files/newspaper-article-image-cut.png"
             alt="Newspaper article"
             class="block w-full h-auto object-contain transition-opacity duration-700 ease-out"
             style=${{ opacity: imageOpacity }}
