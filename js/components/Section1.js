@@ -29,8 +29,8 @@ export default function Section1() {
   const bgScale = 1 + progress * 0.25;
 
   // White overlay: fade in from start opacity to end opacity over full scroll
-  const overlayStartOpacity = 0.9;
-  const overlayEndOpacity = 0.4;
+  const overlayStartOpacity = 0.95;
+  const overlayEndOpacity = 0.6;
   const overlayOpacity =
     overlayStartOpacity + (overlayEndOpacity - overlayStartOpacity) * progress;
 
@@ -54,9 +54,9 @@ export default function Section1() {
   const t3Y = Math.max(0, (1 - remap(progress, 0.62, 0.74)) * 50);
 
   return html`
-    <section ref=${sectionRef} class="relative h-[380vh]">
+    <section ref=${sectionRef} class="relative h-[380vh]" id="section-1">
       <div
-        class="sticky top-0 h-screen overflow-hidden grid place-items-center"
+        class="sticky top-0 h-screen overflow-hidden grid place-items-center border-b-4 border-uv4ddj-green"
       >
         <div
           class="absolute inset-0 bg-cover bg-center will-change-transform"
@@ -116,8 +116,8 @@ export default function Section1() {
           <h1
             class="m-0 max-w-[92vw] sm:max-w-2xl lg:max-w-3xl text-center text-black font-bold  text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
           >
-            <em>uncertainty4ddj</em>: Visualizing Uncertainty for Data
-            Journalism
+            <em style="color: #34A480;">uncertainty4ddj</em>: Visualizing
+            Uncertainty for Data Journalism
           </h1>
         </div>
       </div>
