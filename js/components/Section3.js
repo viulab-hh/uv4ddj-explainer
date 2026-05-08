@@ -44,19 +44,46 @@ const COLUMNS = [
     headline: "Sampling",
     image: "files/spiegel_cut.png",
     text1: "election polls",
-    text2: '(e.g. from "Der Spiegel")',
+    text2: html`<p>
+      (e.g. from${" "}"
+      <a
+        href="https://www.spiegel.de/politik/deutschland/sonntagsfrage-umfragen-zu-bundestagswahl-landtagswahl-europawahl-a-944816.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline"
+        >Der Spiegel</a
+      >")
+    </p>`,
   },
   {
     headline: "Spatial",
     image: "files/NYT_cut.png",
     text1: "conflict mapping",
-    text2: '(e.g. from "New York Times")',
+    text2: html`<p>
+      (e.g. from${" "}"
+      <a
+        href="https://www.nytimes.com/article/axis-resistance-iran-militia.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline"
+        >New York Times</a
+      >")
+    </p>`,
   },
   {
     headline: "Forecast",
     image: "files/SWR_cut.png",
     text1: "climate projections",
-    text2: '(e.g. from "SWR")',
+    text2: html`<p>
+      (e.g. from${" "}"
+      <a
+        href="https://www.swr.de/swraktuell/baden-wuerttemberg/verpasste-ziele-warum-bw-beim-e-auto-anteil-hinterherfaehrt-100.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline"
+        >SWR</a
+      >")
+    </p>`,
   },
 ];
 
@@ -133,7 +160,7 @@ export default function Section3() {
                   <img
                     src=${col.image}
                     alt=${col.headline}
-                    class="w-full h-full object-cover shadow-[0_2px_14px_rgba(0,0,0,0.13)] border-2 border-uv4ddj-green"
+                    class="w-full h-full object-cover shadow-[0_2px_14px_rgba(0,0,0,0.13)] border-2 border-uv4ddj-green rounded-xl"
                   />
                 </article>
               `;
@@ -141,7 +168,7 @@ export default function Section3() {
           </div>
 
           <p
-            class="m-0 text-center font-bold leading-tight text-3xl sm:text-4xl lg:text-5xl text-balance"
+            class="m-0 text-center font-medium leading-tight text-3xl sm:text-4xl lg:text-5xl text-balance"
             style=${{
               opacity: closingOpacity,
               transform: `translateY(${closingY}px)`,

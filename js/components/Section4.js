@@ -11,7 +11,7 @@ const STEPS = [
     alt: "Toolkit icon",
     cta: {
       label: "Try it out",
-      href: "https://www.google.com",
+      href: "https://viulab-hh.github.io/u4ddj-toolbox/",
     },
   },
   {
@@ -61,7 +61,7 @@ export default function Section4() {
   const finalIn = remap(progress, 0.9, 0.98);
   const introOut = 1 - remap(progress, 0.86, 0.94);
   const finalY = (1 - finalIn) * 28;
-  const overlayOpacity = 0.8 + 0.05 * finalIn;
+  const overlayOpacity = 0.9 - 0.05 * finalIn;
 
   return html`
     <section
@@ -109,7 +109,7 @@ export default function Section4() {
                       }}
                     >
                       <div
-                        class="grid grid-cols-[auto_1fr] items-center gap-5 sm:gap-8 bg-white/95 border border-uv4ddj-green shadow-[0_10px_30px_rgba(0,0,0,0.08)] p-5 sm:p-8 lg:p-10"
+                        class="grid grid-cols-[auto_1fr] items-center gap-5 sm:gap-8 bg-white/95 border border-uv4ddj-green rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] p-5 sm:p-8 lg:p-10"
                       >
                         <img
                           src=${step.icon}
@@ -129,7 +129,7 @@ export default function Section4() {
                                   href=${step.cta.href}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  class="inline-flex mt-4 px-4 py-2 bg-uv4ddj-green text-black font-normal border border-uv4ddj-green hover:opacity-90 transition-opacity"
+                                  class="inline-flex mt-4 px-4 py-2 bg-uv4ddj-green rounded-xl text-black font-normal border border-uv4ddj-green hover:opacity-90 transition-opacity"
                                 >
                                   ${step.cta.label}
                                 </a>
@@ -151,21 +151,26 @@ export default function Section4() {
               transform: `translateY(${finalY}px)`,
             }}
           >
-            <div class="text-center px-4 sm:px-8">
+            <div
+              class="text-center px-4 sm:px-8 flex flex-col items-center gap-12"
+            >
               <h2
-                class="m-0 text-black text-3xl sm:text-4xl lg:text-6xl leading-relaxed text-balance"
+                class="text-black text-3xl sm:text-4xl lg:text-6xl leading-relaxed text-balance"
               >
                 <em class="font-bold text-uv4ddj-green">uncertainty4ddj</em>:
                 Visualizing Uncertainty for Data Journalism
               </h2>
-              <a
-                href="mailto:contact@example.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex mt-8 px-6 sm:px-8 py-3 bg-uv4ddj-green text-black font-normal text-lg border border-uv4ddj-green hover:opacity-90 transition-opacity"
-              >
-                Get in touch
-              </a>
+              <div class="flex flex-col items-center gap-4">
+                <p>Prof. Dr.-Ing. Christoph Kinkeldey</p>
+                <a
+                  href="https://viulab.haw-hamburg.de/contact"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex px-6 sm:px-8 py-3 bg-uv4ddj-green rounded-xl text-black font-normal text-lg border border-uv4ddj-green hover:opacity-90 transition-opacity"
+                >
+                  Get in touch
+                </a>
+              </div>
             </div>
           </div>
         </div>

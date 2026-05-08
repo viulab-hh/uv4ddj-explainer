@@ -93,7 +93,7 @@ function AnnotationBox({ def, rect, visible }) {
       }}
     >
       <div
-        class="absolute text-black text-base leading-[1.45] px-[10px] py-[6px] max-w-[300px]"
+        class="absolute text-black text-base leading-[1.45] px-[10px] py-[6px] max-w-[300px] rounded-tl-xl rounded-tr-xl -ml-[2px] -mr-[2px]"
         style=${{ backgroundColor: def.color, ...labelPositionStyle }}
       >
         ${def.label}
@@ -186,7 +186,7 @@ export default function Section2() {
             style=${{ opacity: showIntro ? 1 : 0 }}
           >
             <div
-              class="pointer-events-auto bg-uv4ddj-green/95 backdrop-blur-sm p-6 sm:p-8 max-w-[92vw] sm:max-w-[600px] mx-auto shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+              class="pointer-events-auto bg-uv4ddj-green/95 rounded-xl backdrop-blur-sm p-6 sm:p-8 max-w-[92vw] sm:max-w-[600px] mx-auto shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
             >
               <h2
                 class="m-0 mb-4 text-xl sm:text-3xl font-bold leading-tight text-balance text-center"
