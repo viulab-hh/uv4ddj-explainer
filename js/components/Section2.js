@@ -195,7 +195,7 @@ export default function Section2() {
               </h2>
               <br />
               <p
-                class="m-0 text-sm sm:text-lg leading-7 sm:leading-8 text-balance text-center"
+                class="m-0 text-sm sm:text-lg leading-5 sm:leading-6 text-balance text-center"
               >
                 Let's review this striking example of a ${" "}
                 <span style="white-space: nowrap;">pre-election</span> survey
@@ -213,14 +213,14 @@ export default function Section2() {
             class="relative w-full flex items-center justify-center px-6 sm:px-8"
           >
             <p
-              class="absolute m-0 text-black font-normal text-center leading-[1.35] max-w-[92vw] sm:max-w-xl md:max-w-2xl text-xl sm:text-2xl md:text-3xl transition-opacity duration-500 ease-out"
+              class="absolute m-0 text-black font-normal text-center leading-[1.35] max-w-[92vw] sm:max-w-xl md:max-w-2xl text-xl sm:text-2xl md:text-3xl transition-opacity duration-500 ease-out text-balance"
               style=${{ opacity: step4Opacity }}
             >
               Even experts often misinterpret changes that fall within the
               margin of error.
             </p>
             <p
-              class="absolute m-0 text-black font-normal text-center leading-[1.35] max-w-[92vw] sm:max-w-xl md:max-w-2xl text-xl sm:text-2xl md:text-3xl transition-all duration-300 ease-out"
+              class="absolute m-0 text-black font-normal text-center leading-[1.35] max-w-[92vw] sm:max-w-xl md:max-w-2xl text-xl sm:text-2xl md:text-3xl transition-all duration-300 ease-out text-balance"
               style=${{
                 opacity: step5Opacity,
                 transform: `translateY(${step5Y}px)`,

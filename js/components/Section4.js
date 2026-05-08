@@ -118,7 +118,7 @@ export default function Section4() {
                         />
                         <div>
                           <p
-                            class="m-0 text-black text-lg sm:text-2xl leading-snug sm:leading-[1.45]"
+                            class="m-0 text-black text-lg sm:text-xl leading-snug sm:leading-[1.45]"
                           >
                             <span class="font-bold">${i + 1}.</span>
                             ${" "}${step.text}
@@ -158,7 +158,7 @@ export default function Section4() {
                 class="text-black text-3xl sm:text-4xl lg:text-6xl leading-relaxed text-balance"
               >
                 <em class="font-bold text-uv4ddj-green">uncertainty4ddj</em>:
-                Visualizing Uncertainty for Data Journalism
+                Visualizing Uncertainty in Data Journalism
               </h2>
               <div class="flex flex-col items-center gap-4">
                 <p>Prof. Dr.-Ing. Christoph Kinkeldey</p>

@@ -114,10 +114,14 @@ export default function Section1() {
           }}
         >
           <h1
-            class="m-0 max-w-[92vw] sm:max-w-2xl lg:max-w-3xl text-center text-black font-bold  text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+            class="m-0 max-w-[92vw] sm:max-w-2xl lg:max-w-3xl text-center text-black font-bold  text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-balance"
           >
-            <em style="color: #34A480;">uncertainty4ddj</em>: Visualizing
-            Uncertainty for Data Journalism
+            <span class="leading-[150%]">
+              <em style="color: #34A480;">uncertainty4ddj</em>
+            </span>
+            <span class="leading-[110%]">
+              <br />Visualizing Uncertainty <br />in Data Journalism
+            </span>
           </h1>
         </div>
       </div>
