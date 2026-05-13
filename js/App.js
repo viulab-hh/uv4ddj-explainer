@@ -14,7 +14,7 @@ function App() {
         <img
           src="files/VIU_Logo_serif.svg"
           alt="VIU logo"
-          class="w-[140px] h-auto"
+          class="w-[80px] sm:w-[140px] h-auto"
         />
       </div>
 
