@@ -8,15 +8,19 @@ import Section4 from "./components/Section4.js";
 function App() {
   return html`
     <div>
-      <div
-        class="fixed top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
+      <a
+        href="https://viulab.haw-hamburg.de/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Open VIU Lab website"
+        class="fixed top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-auto"
       >
         <img
           src="files/VIU_Logo_serif.svg"
           alt="VIU logo"
           class="w-[80px] sm:w-[140px] h-auto"
         />
-      </div>
+      </a>
 
       <${Section1} />
       <${Section2} />
