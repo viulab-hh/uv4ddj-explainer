@@ -35,6 +35,72 @@ const STEP_WINDOWS = [
 const remap = (p, inStart, inEnd) =>
   Math.min(1, Math.max(0, (p - inStart) / (inEnd - inStart)));
 
+function StepCard({ step, index, style = {}, className = "" }) {
+  return html`
+    <article
+      class=${`w-full transition-all duration-500 ease-out ${className}`.trim()}
+      style=${style}
+    >
+      <div
+        class="grid grid-cols-[auto_1fr] items-center gap-5 sm:gap-8 bg-white/95 border border-uv4ddj-green rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] p-5 sm:p-8 lg:p-10"
+      >
+        <img
+          src=${step.icon}
+          alt=${step.alt}
+          class="w-16 h-16 sm:w-20 sm:h-20 object-contain"
+        />
+        <div>
+          <p
+            class="m-0 text-black text-lg sm:text-xl leading-snug sm:leading-[1.45]"
+          >
+            <span class="font-bold">${index + 1}.</span>
+            ${" "}${step.text}
+          </p>
+          ${step.cta
+            ? html`
+                <a
+                  href=${step.cta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex mt-4 px-4 py-2 bg-uv4ddj-green rounded-xl text-black font-normal border border-uv4ddj-green hover:opacity-90 transition-opacity"
+                >
+                  ${step.cta.label}
+                </a>
+              `
+            : ""}
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function FinalPanel({ style = {}, className = "" }) {
+  return html`
+    <div
+      class=${`text-center px-4 sm:px-8 flex flex-col items-center gap-12 ${className}`.trim()}
+      style=${style}
+    >
+      <h2
+        class="text-black text-3xl sm:text-4xl lg:text-6xl leading-relaxed text-balance"
+      >
+        <em class="font-bold text-uv4ddj-green">uncertainty4ddj</em>:
+        Visualizing Uncertainty in Data Journalism
+      </h2>
+      <div class="flex flex-col items-center gap-4">
+        <p>Prof. Dr.-Ing. Christoph Kinkeldey</p>
+        <a
+          href="https://viulab.haw-hamburg.de/contact"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex px-6 sm:px-8 py-3 bg-uv4ddj-green rounded-xl text-black font-normal text-lg border border-uv4ddj-green hover:opacity-90 transition-opacity"
+        >
+          Get in touch
+        </a>
+      </div>
+    </div>
+  `;
+}
+
 export default function Section4() {
   const sectionRef = useRef(null);
   const [progress, setProgress] = useState(0);
@@ -58,6 +124,29 @@ export default function Section4() {
     remap(progress, range.start, range.start + 0.14),
   );
 
+  const stageStyle = (inStart, inEnd, outStart, outEnd) => {
+    const fadeIn = remap(progress, inStart, inEnd);
+    const fadeOut =
+      outStart === undefined ? 1 : 1 - remap(progress, outStart, outEnd);
+    const opacity = fadeIn * fadeOut;
+    const yIn = (1 - fadeIn) * 26;
+    const yOut =
+      outStart === undefined ? 0 : remap(progress, outStart, outEnd) * -26;
+
+    return {
+      opacity,
+      transform: `translateY(${yIn + yOut}px)`,
+      pointerEvents: opacity > 0.02 ? "auto" : "none",
+    };
+  };
+
+  const mobileStepStyles = [
+    stageStyle(0.08, 0.18, 0.24, 0.32),
+    stageStyle(0.34, 0.44, 0.5, 0.58),
+    stageStyle(0.6, 0.7, 0.76, 0.84),
+  ];
+  const mobileFinalStyle = stageStyle(0.86, 0.96);
+
   const finalIn = remap(progress, 0.9, 0.98);
   const introOut = 1 - remap(progress, 0.86, 0.94);
   const finalY = (1 - finalIn) * 28;
@@ -67,7 +156,7 @@ export default function Section4() {
     <section
       id="section-4"
       ref=${sectionRef}
-      class="relative h-[420vh] bg-[#fff] border-t-4 border-uv4ddj-green"
+      class="relative h-[500vh] md:h-[420vh] bg-[#fff] border-t-4 border-uv4ddj-green"
     >
       <div
         class="sticky top-0 h-screen overflow-hidden px-4 sm:px-8 py-8 sm:py-12 flex items-center justify-center "
@@ -84,7 +173,39 @@ export default function Section4() {
         <div
           class="relative z-10 max-w-6xl mx-auto w-full h-full flex items-center justify-center"
         >
-          <div class="w-full" style=${{ opacity: introOut }}>
+          <div class="w-full md:hidden">
+            <h2
+              class="m-0 text-center text-xl sm:text-2xl lg:text-3xl leading-tight text-black mb-8 text-balance"
+              style=${{ opacity: introOut }}
+            >
+              In the ${" "}
+              <em class="font-bold text-uv4ddj-green">uncertainty4ddj</em>${" "}
+              project, we support data journalists in visualizing uncertainty,
+              grounded in the current state of scientific knowledge:
+            </h2>
+
+            <div class="relative min-h-[420px]">
+              ${STEPS.map(
+                (step, i) => html`
+                  <div
+                    class="absolute inset-0 flex items-center justify-center"
+                  >
+                    <${StepCard}
+                      step=${step}
+                      index=${i}
+                      style=${mobileStepStyles[i]}
+                    />
+                  </div>
+                `,
+              )}
+
+              <div class="absolute inset-0 flex items-center justify-center">
+                <${FinalPanel} style=${mobileFinalStyle} />
+              </div>
+            </div>
+          </div>
+
+          <div class="hidden md:block w-full" style=${{ opacity: introOut }}>
             <h2
               class="m-0 text-center text-xl sm:text-2xl lg:text-3xl leading-tight text-black mb-8 text-balance"
             >
@@ -100,44 +221,15 @@ export default function Section4() {
                   const inProgress = stepProgress[i];
 
                   return html`
-                    <article
+                    <${StepCard}
                       key=${i}
-                      class="w-full transition-all duration-500 ease-out"
+                      step=${step}
+                      index=${i}
                       style=${{
                         opacity: inProgress,
                         transform: `translateY(${(1 - inProgress) * 26}px)`,
                       }}
-                    >
-                      <div
-                        class="grid grid-cols-[auto_1fr] items-center gap-5 sm:gap-8 bg-white/95 border border-uv4ddj-green rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] p-5 sm:p-8 lg:p-10"
-                      >
-                        <img
-                          src=${step.icon}
-                          alt=${step.alt}
-                          class="w-16 h-16 sm:w-20 sm:h-20 object-contain"
-                        />
-                        <div>
-                          <p
-                            class="m-0 text-black text-lg sm:text-xl leading-snug sm:leading-[1.45]"
-                          >
-                            <span class="font-bold">${i + 1}.</span>
-                            ${" "}${step.text}
-                          </p>
-                          ${step.cta
-                            ? html`
-                                <a
-                                  href=${step.cta.href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  class="inline-flex mt-4 px-4 py-2 bg-uv4ddj-green rounded-xl text-black font-normal border border-uv4ddj-green hover:opacity-90 transition-opacity"
-                                >
-                                  ${step.cta.label}
-                                </a>
-                              `
-                            : ""}
-                        </div>
-                      </div>
-                    </article>
+                    />
                   `;
                 })}
               </div>
@@ -145,33 +237,13 @@ export default function Section4() {
           </div>
 
           <div
-            class="absolute inset-0 flex items-center justify-center"
+            class="absolute inset-0 hidden md:flex items-center justify-center"
             style=${{
               opacity: finalIn,
               transform: `translateY(${finalY}px)`,
             }}
           >
-            <div
-              class="text-center px-4 sm:px-8 flex flex-col items-center gap-12"
-            >
-              <h2
-                class="text-black text-3xl sm:text-4xl lg:text-6xl leading-relaxed text-balance"
-              >
-                <em class="font-bold text-uv4ddj-green">uncertainty4ddj</em>:
-                Visualizing Uncertainty in Data Journalism
-              </h2>
-              <div class="flex flex-col items-center gap-4">
-                <p>Prof. Dr.-Ing. Christoph Kinkeldey</p>
-                <a
-                  href="https://viulab.haw-hamburg.de/contact"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex px-6 sm:px-8 py-3 bg-uv4ddj-green rounded-xl text-black font-normal text-lg border border-uv4ddj-green hover:opacity-90 transition-opacity"
-                >
-                  Get in touch
-                </a>
-              </div>
-            </div>
+            <${FinalPanel} />
           </div>
         </div>
       </div>
