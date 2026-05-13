@@ -42,7 +42,7 @@ function StepCard({ step, index, style = {}, className = "" }) {
       style=${style}
     >
       <div
-        class="grid grid-cols-[auto_1fr] items-center gap-5 sm:gap-8 bg-white/95 border border-uv4ddj-green rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] p-5 sm:p-8 lg:p-10"
+        class="grid grid-cols-[auto_1fr] items-center gap-5 sm:gap-8 bg-white/95 border border-uv4ddj-green rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] p-4 sm:p-6"
       >
         <img
           src=${step.icon}

@@ -91,10 +91,10 @@ function ColumnCard({ col, style = {}, className = "" }) {
   return html`
     <article
       class=${`flex flex-col items-center text-center transition-all duration-500 ease-out max-w-md mx-auto md:max-w-none ${className}`.trim()}
-      style=${style}
+      style=${{ willChange: "transform, opacity", ...style }}
     >
       <h3
-        class="m-0 mb-4 font-bold text-xl sm:text-2xl leading-snug text-uv4ddj-green"
+        class="m-0 font-bold text-xl sm:text-2xl leading-snug text-uv4ddj-green"
       >
         ${col.headline}
       </h3>
@@ -123,21 +123,37 @@ function StageMessage({ text, style = {}, className = "" }) {
 
 export default function Section3() {
   const sectionRef = useRef(null);
+  const frameRef = useRef(0);
+  const progressRef = useRef(0);
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => {
+    const updateProgress = () => {
+      frameRef.current = 0;
+
       const el = sectionRef.current;
       if (!el) return;
+
       const top = el.getBoundingClientRect().top;
       const height = el.offsetHeight - window.innerHeight;
       const p = height > 0 ? Math.max(0, Math.min(1, -top / height)) : 0;
+      if (Math.abs(progressRef.current - p) < 0.001) return;
+
+      progressRef.current = p;
       setProgress(p);
     };
 
+    const onScroll = () => {
+      if (frameRef.current) return;
+      frameRef.current = window.requestAnimationFrame(updateProgress);
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    updateProgress();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frameRef.current) window.cancelAnimationFrame(frameRef.current);
+    };
   }, []);
 
   const remap = (p, inStart, inEnd) =>
@@ -154,7 +170,7 @@ export default function Section3() {
 
     return {
       opacity,
-      transform: `translateY(${yIn + yOut}px)`,
+      transform: `translate3d(0, ${yIn + yOut}px, 0)`,
       pointerEvents: opacity > 0.02 ? "auto" : "none",
     };
   };
@@ -180,7 +196,7 @@ export default function Section3() {
       >
         <div class="max-w-6xl mx-auto w-full">
           <h2
-            class="md:hidden m-0 mb-12 sm:mb-14 lg:mb-16 text-center leading-tight text-3xl sm:text-4xl lg:text-4xl"
+            class="md:hidden m-0 mb-2 text-center leading-[100%] text-3xl sm:text-4xl lg:text-4xl"
           >
             Uncertainty appears in many forms:
           </h2>
@@ -188,14 +204,14 @@ export default function Section3() {
           <div class="hidden md:block">
             <${FadeInUp} delay=${0}>
               <h2
-                class="m-0 mb-12 sm:mb-14 lg:mb-16 text-center leading-tight text-3xl sm:text-4xl lg:text-4xl"
+                class="m-0 mb-4 text-center leading-tight text-2xl sm:text-3xl"
               >
                 Uncertainty appears in many forms:
               </h2>
             <//>
           </div>
 
-          <div class="md:hidden relative min-h-[440px] mb-14 sm:mb-16">
+          <div class="md:hidden relative min-h-[440px] mb-4">
             <div class="absolute inset-0 flex items-center justify-center">
               <${ColumnCard} col=${COLUMNS[0]} style=${mobileSamplingStyle} />
             </div>
@@ -214,7 +230,7 @@ export default function Section3() {
           </div>
 
           <div
-            class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 lg:gap-10 mb-14 sm:mb-16 lg:mb-20"
+            class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 lg:gap-10 mb-4"
           >
             ${COLUMNS.map((col, i) => {
               const colIn = remap(progress, 0.14 + i * 0.23, 0.38 + i * 0.23);
@@ -227,7 +243,7 @@ export default function Section3() {
                   col=${col}
                   style=${{
                     opacity: colOpacity,
-                    transform: `translateY(${colY}px)`,
+                    transform: `translate3d(0, ${colY}px, 0)`,
                   }}
                 />
               `;
@@ -235,10 +251,10 @@ export default function Section3() {
           </div>
 
           <p
-            class="hidden md:block m-0 text-center font-medium leading-tight text-3xl sm:text-4xl lg:text-5xl text-balance"
+            class="hidden md:block m-0 text-center font-medium leading-tight text-2xl sm:text-3xl text-balance"
             style=${{
               opacity: closingOpacity,
-              transform: `translateY(${closingY}px)`,
+              transform: `translate3d(0, ${closingY}px, 0)`,
             }}
           >
             Uncertainty demands better communication.
