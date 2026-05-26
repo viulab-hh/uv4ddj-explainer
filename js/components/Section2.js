@@ -83,7 +83,7 @@ function AnnotationBox({ def, rect, visible }) {
       }}
     >
       <div
-        class="absolute text-black text-xs sm:text-base sm:leading-[1.45] px-[10px] py-[10px] max-w-[300px] rounded-tl-xl rounded-tr-xl -ml-[2px] -mr-[2px]"
+        class="absolute text-black text-xs sm:text-base sm:leading-[1.45] px-[10px] py-[10px] max-w-[300px] rounded-tl-[0.5rem] rounded-tr-[0.5rem] -ml-[2px] -mr-[2px] font-extralight"
         style=${{ backgroundColor: def.color, ...labelPositionStyle }}
       >
         ${def.label}
@@ -148,6 +148,11 @@ export default function Section2() {
       <div
         class="sticky top-0 bottom-0 h-screen px-2 md:max-w-[1200px] mx-auto overflow-visible z-[1] flex items-center"
       >
+        <div
+          class="absolute top-0 left-1/2 -translate-x-1/2 w-screen h-screen bg-uv4ddj-green transition-opacity duration-500 ease-out pointer-events-none z-0"
+          style=${{ opacity: showIntro ? 1 : 0 }}
+        ></div>
+
         <div class="relative w-full">
           <${ArticleImage}
             imageOpacity=${imageOpacity}
@@ -171,16 +176,15 @@ export default function Section2() {
             style=${{ opacity: showIntro ? 1 : 0 }}
           >
             <div
-              class="pointer-events-auto bg-uv4ddj-green/95 rounded-xl backdrop-blur-sm p-6 sm:p-8 max-w-[92vw] sm:max-w-[600px] mx-auto shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+              class="pointer-events-auto bg-uv4ddj-green rounded-[0.5rem] p-6 sm:p-8 max-w-[92vw] sm:max-w-[600px] mx-auto"
             >
               <h2
-                class="m-0 mb-4 text-xl sm:text-3xl font-bold leading-tight text-balance text-center"
+                class="m-0 mb-4 text-xl sm:text-3xl font-normal leading-tight text-balance text-center"
               >
                 But why is it important to know about the uncertainty in data?
               </h2>
-              <br />
               <p
-                class="m-0 text-sm sm:text-lg leading-5 sm:leading-6 text-balance text-center"
+                class="m-0 text-sm sm:text-lg leading-5 sm:leading-6 text-balance text-center font-extralight"
               >
                 Let's review this striking example of a ${" "}
                 <span style="white-space: nowrap;">pre-election</span> survey
@@ -198,14 +202,14 @@ export default function Section2() {
             class="relative w-full flex items-center justify-center px-6 sm:px-8"
           >
             <p
-              class="absolute m-0 text-black font-normal text-center leading-[1.35] max-w-[92vw] sm:max-w-xl md:max-w-2xl text-xl sm:text-2xl md:text-3xl transition-opacity duration-500 ease-out text-balance"
+              class="absolute m-0 text-black font-extralight text-center leading-[1.35] max-w-[92vw] sm:max-w-xl md:max-w-2xl text-xl sm:text-2xl md:text-3xl transition-opacity duration-500 ease-out text-balance"
               style=${{ opacity: step4Opacity }}
             >
               Even experts often misinterpret changes that fall within the
               margin of error.
             </p>
             <p
-              class="absolute m-0 text-black font-normal text-center leading-[1.35] max-w-[92vw] sm:max-w-xl md:max-w-2xl text-xl sm:text-2xl md:text-3xl transition-all duration-300 ease-out text-balance"
+              class="absolute m-0 text-black font-extralight text-center leading-[1.35] max-w-[92vw] sm:max-w-xl md:max-w-2xl text-xl sm:text-2xl md:text-3xl transition-all duration-300 ease-out text-balance"
               style=${{
                 opacity: step5Opacity,
                 transform: `translateY(${step5Y}px)`,

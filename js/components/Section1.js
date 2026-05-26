@@ -79,13 +79,16 @@ export default function Section1() {
             transform: `translateY(${t1Y}px)`,
           }}
         >
-          <p
-            class="m-0 max-w-[92vw] sm:max-w-2xl lg:max-w-3xl text-center text-black text-base sm:text-lg md:text-xl lg:text-2xl leading-6 sm:leading-8 md:leading-9 text-balance"
+          <h1
+            class="m-0 max-w-[92vw] sm:max-w-2xl lg:max-w-3xl text-center text-black font-normal  text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-balance"
           >
-            Data is a central part of journalistic work, yet one crucial element
-            often remains invisible: the uncertainty of the data. It is
-            essential for interpreting facts and creating convincing narratives.
-          </p>
+            <span class="leading-[150%]">
+              <em style="color: #34A480;">uncertainty4ddj</em>
+            </span>
+            <span class="leading-[110%]">
+              <br />Visualizing Uncertainty <br />in Data Journalism
+            </span>
+          </h1>
         </div>
 
         <!-- Text Box 2 -->
@@ -97,11 +100,11 @@ export default function Section1() {
           }}
         >
           <p
-            class="m-0 max-w-[92vw] sm:max-w-2xl lg:max-w-3xl text-center text-black text-base sm:text-lg md:text-xl lg:text-2xl leading-6 sm:leading-8 md:leading-9 text-balance"
+            class="m-0 max-w-[92vw] sm:max-w-2xl lg:max-w-3xl text-center text-black text-base sm:text-lg md:text-xl lg:text-2xl leading-6 sm:leading-8 md:leading-9 text-balance font-extralight"
           >
-            At viu:lab (HAW Hamburg), we examine the role of uncertainty
-            visualization in data-driven news coverage through the${" "}
-            <em>uncertainty4ddj</em> project.
+            Data is a central part of journalistic work, yet one crucial element
+            often remains invisible: the uncertainty of the data. It is
+            essential for interpreting facts and creating convincing narratives.
           </p>
         </div>
 
@@ -113,16 +116,13 @@ export default function Section1() {
             transform: `translateY(${t3Y}px)`,
           }}
         >
-          <h1
-            class="m-0 max-w-[92vw] sm:max-w-2xl lg:max-w-3xl text-center text-black font-bold  text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-balance"
+          <p
+            class="m-0 max-w-[92vw] sm:max-w-2xl lg:max-w-3xl text-center text-black text-base sm:text-lg md:text-xl lg:text-2xl leading-6 sm:leading-8 md:leading-9 text-balance font-extralight"
           >
-            <span class="leading-[150%]">
-              <em style="color: #34A480;">uncertainty4ddj</em>
-            </span>
-            <span class="leading-[110%]">
-              <br />Visualizing Uncertainty <br />in Data Journalism
-            </span>
-          </h1>
+            At viu:lab (HAW Hamburg), we examine the role of uncertainty
+            visualization in data-driven news coverage through the${" "}
+            <em>uncertainty4ddj</em> project.
+          </p>
         </div>
       </div>
     </section>

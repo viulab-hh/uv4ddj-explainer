@@ -13,7 +13,7 @@ function App() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Open VIU Lab website"
-        class="fixed top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-auto"
+        class="fixed top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-auto bg-white/90 rounded-[0.5rem] px-3 py-2"
       >
         <img
           src="files/VIU_Logo_serif.svg"

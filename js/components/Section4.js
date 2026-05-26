@@ -42,7 +42,7 @@ function StepCard({ step, index, style = {}, className = "" }) {
       style=${style}
     >
       <div
-        class="grid grid-cols-[auto_1fr] items-center gap-5 sm:gap-8 bg-white/95 border border-uv4ddj-green rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] p-4 sm:p-6"
+        class="grid grid-cols-[auto_1fr] items-center gap-5 sm:gap-8 bg-white/95 border border-uv4ddj-green rounded-[0.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.08)] p-4 sm:p-6"
       >
         <img
           src=${step.icon}
@@ -51,9 +51,9 @@ function StepCard({ step, index, style = {}, className = "" }) {
         />
         <div>
           <p
-            class="m-0 text-black text-lg sm:text-xl leading-snug sm:leading-[1.45]"
+            class="m-0 text-black text-lg sm:text-xl leading-snug sm:leading-[1.45] font-extralight"
           >
-            <span class="font-bold">${index + 1}.</span>
+            <span class="font-extralight">${index + 1}.</span>
             ${" "}${step.text}
           </p>
           ${step.cta
@@ -62,7 +62,7 @@ function StepCard({ step, index, style = {}, className = "" }) {
                   href=${step.cta.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex mt-4 px-4 py-2 bg-uv4ddj-green rounded-xl text-black font-normal border border-uv4ddj-green hover:opacity-90 transition-opacity"
+                  class="inline-flex mt-4 px-4 py-2 bg-uv4ddj-green rounded-[0.5rem] text-black font-extralight border border-uv4ddj-green hover:opacity-90 transition-opacity"
                 >
                   ${step.cta.label}
                 </a>
@@ -80,19 +80,23 @@ function FinalPanel({ style = {}, className = "" }) {
       class=${`text-center px-4 sm:px-8 flex flex-col items-center gap-12 ${className}`.trim()}
       style=${style}
     >
-      <h2
-        class="text-black text-3xl sm:text-4xl lg:text-6xl leading-relaxed text-balance"
+      <h1
+        class="m-0 max-w-[92vw] sm:max-w-2xl lg:max-w-3xl text-center text-black font-normal  text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-balance"
       >
-        <em class="font-bold text-uv4ddj-green">uncertainty4ddj</em>:
-        Visualizing Uncertainty in Data Journalism
-      </h2>
+        <span class="leading-[150%]">
+          <em style="color: #34A480;">uncertainty4ddj</em>
+        </span>
+        <span class="leading-[110%]">
+          <br />Visualizing Uncertainty <br />in Data Journalism
+        </span>
+      </h1>
       <div class="flex flex-col items-center gap-4">
-        <p>Prof. Dr.-Ing. Christoph Kinkeldey</p>
+        <p class="font-extralight">Prof. Dr.-Ing. Christoph Kinkeldey</p>
         <a
           href="https://viulab.haw-hamburg.de/contact"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex px-6 sm:px-8 py-3 bg-uv4ddj-green rounded-xl text-black font-normal text-lg border border-uv4ddj-green hover:opacity-90 transition-opacity"
+          class="inline-flex px-6 sm:px-8 py-3 bg-uv4ddj-green rounded-[0.5rem] text-black font-extralight text-lg border border-uv4ddj-green hover:opacity-90 transition-opacity"
         >
           Get in touch
         </a>
@@ -175,13 +179,14 @@ export default function Section4() {
         >
           <div class="w-full md:hidden">
             <h2
-              class="m-0 text-center text-xl sm:text-2xl lg:text-3xl leading-tight text-black mb-8 text-balance"
+              class="m-0 text-center text-xl sm:text-2xl lg:text-3xl leading-tight text-black mb-8 text-balance font-extralight"
               style=${{ opacity: introOut }}
             >
               In the ${" "}
-              <em class="font-bold text-uv4ddj-green">uncertainty4ddj</em>${" "}
-              project, we support data journalists in visualizing uncertainty,
-              grounded in the current state of scientific knowledge:
+              <em class="font-normal text-uv4ddj-green">uncertainty4ddj</em
+              >${" "} project, we support data journalists in visualizing
+              uncertainty, grounded in the current state of scientific
+              knowledge:
             </h2>
 
             <div class="relative min-h-[420px]">
@@ -207,12 +212,13 @@ export default function Section4() {
 
           <div class="hidden md:block w-full" style=${{ opacity: introOut }}>
             <h2
-              class="m-0 text-center text-xl sm:text-2xl lg:text-3xl leading-tight text-black mb-8 text-balance"
+              class="m-0 text-center text-xl sm:text-2xl lg:text-3xl leading-tight text-black mb-8 text-balance font-extralight"
             >
               In the ${" "}
-              <em class="font-bold text-uv4ddj-green">uncertainty4ddj</em>${" "}
-              project, we support data journalists in visualizing uncertainty,
-              grounded in the current state of scientific knowledge:
+              <em class="font-normal text-uv4ddj-green">uncertainty4ddj</em
+              >${" "} project, we support data journalists in visualizing
+              uncertainty, grounded in the current state of scientific
+              knowledge:
             </h2>
 
             <div class="flex justify-center">

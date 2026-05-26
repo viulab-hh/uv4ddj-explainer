@@ -94,17 +94,21 @@ function ColumnCard({ col, style = {}, className = "" }) {
       style=${{ willChange: "transform, opacity", ...style }}
     >
       <h3
-        class="m-0 font-bold text-xl sm:text-2xl leading-snug text-uv4ddj-green"
+        class="m-0 font-normal text-xl sm:text-2xl leading-snug text-uv4ddj-green"
       >
         ${col.headline}
       </h3>
 
-      <p class="m-0 text-base sm:text-lg leading-relaxed">${col.text1}</p>
-      <p class="m-0 text-sm sm:text-base leading-relaxed mb-4">${col.text2}</p>
+      <p class="m-0 text-base sm:text-lg leading-relaxed font-extralight">
+        ${col.text1}
+      </p>
+      <p class="m-0 text-sm sm:text-base leading-relaxed mb-4 font-extralight">
+        ${col.text2}
+      </p>
       <img
         src=${col.image}
         alt=${col.headline}
-        class="w-full h-auto object-cover shadow-[0_2px_14px_rgba(0,0,0,0.13)] border-2 border-uv4ddj-green rounded-xl"
+        class="w-full h-auto object-cover shadow-[0_2px_14px_rgba(0,0,0,0.13)] border-2 border-uv4ddj-green rounded-[0.5rem]"
       />
     </article>
   `;
@@ -196,7 +200,7 @@ export default function Section3() {
       >
         <div class="max-w-6xl mx-auto w-full">
           <h2
-            class="md:hidden m-0 mb-2 text-center leading-[100%] text-3xl sm:text-4xl lg:text-4xl"
+            class="md:hidden m-0 mb-2 text-center leading-[100%] text-3xl sm:text-4xl lg:text-4xl font-extralight"
           >
             Uncertainty appears in many forms:
           </h2>
@@ -204,7 +208,7 @@ export default function Section3() {
           <div class="hidden md:block">
             <${FadeInUp} delay=${0}>
               <h2
-                class="m-0 mb-4 text-center leading-tight text-2xl sm:text-3xl"
+                class="m-0 mb-4 text-center leading-tight text-2xl sm:text-3xl font-extralight"
               >
                 Uncertainty appears in many forms:
               </h2>
@@ -251,7 +255,7 @@ export default function Section3() {
           </div>
 
           <p
-            class="hidden md:block m-0 text-center font-medium leading-tight text-2xl sm:text-3xl text-balance"
+            class="hidden md:block m-0 text-center font-normal leading-tight text-2xl sm:text-3xl text-balance"
             style=${{
               opacity: closingOpacity,
               transform: `translate3d(0, ${closingY}px, 0)`,
